@@ -1,8 +1,8 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.1.2
-Release:	1
+Version:	0.2.0
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/%{name}_%{version}.tgz
@@ -18,11 +18,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 It's friendly tool for first-time users, it ask only few questions and
-uses graphical user interface.
+uses graphical user interface at text terminal. It lets configure
+graphics environment, network and startup manager.
 
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
-pytañ i korzysta z graficznego interfejsu u¿ytkownika.
+pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
+tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska graficznego,
+sieci i menad¿era startu.
 
 %prep
 %setup -q -n %{name}_%{version}
@@ -41,14 +44,12 @@ do
     fi
 done
 
-file=./install.sh
-cat $file | sed 's@%{_datadir}@\$DESTDIR%{_datadir}@' > tmp ; mv tmp $file
-cat $file | sed 's@%{_sysconfdir}@\$DESTDIR%{_sysconfdir}@' > tmp ; mv tmp $file
-cat $file | sed 's@%{_sbindir}@\$DESTDIR%{_sbindir}@' > tmp ; mv tmp $file
-
-chmod +x ./install.sh
-
-DESTDIR=$RPM_BUILD_ROOT ./install.sh
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+cp pldconf $RPM_BUILD_ROOT%{_sbindir}
+cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl ustawienia.sh $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp dml.conf $RPM_BUILD_ROOT%{_sysconfdir}/
+echo PLDCONF_EDITOR=vim > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
 %clean
 rm -rf $RPM_BUILD_ROOT
