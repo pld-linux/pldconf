@@ -2,7 +2,7 @@ Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
@@ -61,17 +61,13 @@ DATA_DIR="${IPREFIX}/share/pldconf"
 CONF_DIR="/etc/pldconf"
 CONF_FILE="${CONF_DIR}/ustawienia"
 
-echo PLDCONF_VERSION=%{version} > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo PLDCONF_EDITOR=vim >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo PLDCONF_PAGER=less >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo PLDCONF_SHOW_SOURCE_BUTTON=yes >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo PLDCONF_LOG=no >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo PLDCONF_ON_ERROR=FIX_ERRORS >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo IPREFIX="${IPREFIX}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo EXEC_PREFIX="${EXEC_PREFIX}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo DATA_DIR="${DATA_DIR}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo CONF_DIR="${CONF_DIR}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo CONF_FILE="${CONF_FILE}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia << EOF
+export PLDCONF_PAGER=less
+export PLDCONF_ON_ERROR=FIX_ERRORS
+export PLDCONF_VERBOSE=yes
+export PLDCONF_MESSAGES_MODE=enter
+export PLDCONF_SLEEP_TIME=2
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
