@@ -60,6 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/*.sh
 %attr(755,root,root) %{_datadir}/%{name}/*.pl
 %{_datadir}/%{name}/NET_FILES
+%{_datadir}/%{name}/ROX_WMAKER
 %attr(755,root,root)%{_datadir}/%{name}/POMOC_DML
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
