@@ -6,7 +6,7 @@ Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
-# Source0-md5:	dd0453e79d52ad49b9480cff07fa61fc
+# Source0-md5:	f1d218f3c49cf4c81f5be29700a1f3af
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
