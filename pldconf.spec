@@ -25,7 +25,7 @@ lets you configure your graphic environment, network and startup manager.
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
 pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
-tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska 
+tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska
 graficznego, sieci i menad¿era startu.
 
 %prep
