@@ -11,11 +11,11 @@ URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
 Requires:	dml
+Requires:	gettext
 Requires:	pciutils
 Requires:	sed
 Requires:	which
 Requires:	%{_bindir}/perl
-Requires:	gettext
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -83,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc DOCS/README.hacking DOCS/README.i18n DOCS/TODO
 %attr(755,root,root) %{_bindir}/*
 
 %dir %{_pcdatadir}
@@ -122,16 +123,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/X/*.sh
 
 %dir %{_pcdatadir}/X/gfx
-%attr(644,root,root) %{_pcdatadir}/X/gfx/*
+%{_pcdatadir}/X/gfx/*
 %{_pcdatadir}/X/gfx/README
 
 %dir %{_pcdatadir}/X/archive
-%attr(644,root,root) %{_pcdatadir}/X/archive/*
+%{_pcdatadir}/X/archive/*
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
-
-%doc DOCS/README.hacking DOCS/README.i18n DOCS/TODO
 
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
