@@ -1,12 +1,12 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.11
+Version:	0.3.12
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	5df2d8a71c22623bc794eca9a4c8575f
+# Source0-md5:	5cd8b8f30cd10f59bc2fae7169814902
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
@@ -53,7 +53,7 @@ do
 done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
-cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions user.pl {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,ustawienia}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,user,ustawienia}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 
 IPREFIX="/usr"
 EXEC_PREFIX="${IPREFIX}/bin"
@@ -80,7 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}
 %{_pcdatadir}/pldconf_functions
 %attr(755,root,root) %{_pcdatadir}/*.sh
-%attr(755,root,root) %{_pcdatadir}/*.pl
 
 %dir %{_pcdatadir}/BOOT
 %attr(755,root,root) %{_pcdatadir}/BOOT/*.sh
