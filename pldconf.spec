@@ -49,7 +49,7 @@ do
 done
 
 install pldconf ispconnect $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT DEVICE {autorzy,inne,poldek,win,ustawienia,menu_user,install_dc}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r POMOC NET SYSINFO X BOOT DEVICE win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_dc}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 # ???? It CAN'T be done!!
 #install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
