@@ -1,12 +1,12 @@
-Summary:	PLD Linux Distribution configuration tool
-Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
+Summary:	PLD Linux configuration tool
+Summary(pl):	Narzêdzie do konfiguracji PLD Linuksa 
 Name:		pldconf
-Version:	0.3.6
+Version:	0.3.7
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	15450e12dca5076b83f2686d2999d2a0
+# Source0-md5:	099a654c1c8f1b17432bf8c9d58ffefa
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -21,16 +21,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pcdatadir	%{_datadir}/%{name}
 
 %description
-It's a friendly tool for first-time users, it asks only a few
-questions and uses an graphical user interface on an text terminal. It
-lets one configure their graphic environment, network, startup manager
-and others.
+This is a friendly tool for first-time users. It asks only a few questions and
+makes use of a graphical user interface on a text terminal. It makes possible
+for users to configure their graphic environment, the network and startup
+manager and some other elements of the system. There's only Polish interface 
+available in current version.
 
 %description -l pl
-Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
-pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
-tekstowym. Pldconf pozwala miêdzy innymi na konfiguracjê ¶rodowiska
-graficznego, sieci, menad¿era startu.
+Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o pytañ i
+korzysta z graficznego interfejsu u¿ytkownika na terminalu tekstowym. Pldconf
+pozwala miêdzy innymi na konfiguracjê ¶rodowiska graficznego, sieci, menad¿era
+startu. W chwili obecnej dostêpny jest tylko interfejs w jêzyku polskim.
 
 %prep
 %setup -q -n %{name}_%{version}
@@ -87,15 +88,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/BOOT/*.pl
 %{_pcdatadir}/BOOT/*.c
 %{_pcdatadir}/BOOT/*.txt
-%dir %{_pcdatadir}/BOOT/MBRS
-%{_pcdatadir}/BOOT/MBRS/*.dd
 
 %dir %{_pcdatadir}/NET
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
 %attr(755,root,root) %{_pcdatadir}/NET/*.pl
 %dir %{_pcdatadir}/NET/NET_FILES/
 %{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
-%{_pcdatadir}/NET/NET_FILES/lista_kart
 %{_pcdatadir}/NET/NET_FILES/cost
 
 %dir %{_pcdatadir}/DEVICE
@@ -107,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/POMOC/README*
 
 %dir %{_pcdatadir}/USER
-%attr(755,root,root) %{_pcdatadir}/USER/fetchmail.sh
+%attr(755,root,root) %{_pcdatadir}/USER/*.sh
 
 %dir %{_pcdatadir}/SYSINFO
 %attr(755,root,root) %{_pcdatadir}/SYSINFO/*.sh
