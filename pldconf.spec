@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.3.3
+Version:	0.3.4
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	6811c03541c2963c4ec1bde9d9cb16d4
+# Source0-md5:	9aa82069cffa4b4a4bcbd830619628d6
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -23,13 +23,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 It's a friendly tool for first-time users, it asks only a few
 questions and uses an graphical user interface on an text terminal. It
-lets you configure your graphic environment, network and startup manager.
+lets one configure their graphic environment, network, startup manager
+and others.
 
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
 pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
-tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska
-graficznego, sieci i menad¿era startu.
+tekstowym. Pldconf pozwala miêdzy innymi na konfiguracjê ¶rodowiska
+graficznego, sieci, menad¿era startu.
 
 %prep
 %setup -q -n %{name}_%{version}
@@ -78,7 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
 %attr(755,root,root) %{_pcdatadir}/NET/*.pl
 %dir %{_pcdatadir}/NET/NET_FILES/
-%attr(755,root,root) %{_pcdatadir}/NET/NET_FILES/*.sh
 %{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/lista_kart
 
