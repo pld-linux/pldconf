@@ -9,14 +9,15 @@ Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
 # Source0-md5:	aab3d3c37fc87f8c21001e8ab2249e29
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
+Requires:	awk
 Requires:	bash
 Requires:	dml
-Requires:	sed
-Requires:	awk
 Requires:	pciutils
+Requires:	sed
 Requires:	%{_bindir}/perl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
 %define		_pcdatadir	%{_datadir}/%{name}
 
 %description
@@ -48,8 +49,9 @@ do
 done
 
 install pldconf ispconnect $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT DEVICE autorzy.sh inne.sh poldek.sh win.pl ustawienia.sh menu_user.sh install_dc.sh $RPM_BUILD_ROOT%{_pcdatadir}
-install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
+cp -r POMOC NET SYSINFO X BOOT DEVICE {autorzy,inne,poldek,win,ustawienia,menu_user,install_dc}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+# ???? It CAN'T be done!!
+#install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 echo "PLDCONF_EDITOR=vim" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
@@ -123,4 +125,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
-%{_sysconfdir}/dml.conf
+#%{_sysconfdir}/dml.conf
