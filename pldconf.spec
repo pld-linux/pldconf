@@ -1,15 +1,14 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.10
+Version:	0.3.11
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	aa2f4d6c7d1e18596827c325bd93312a
+# Source0-md5:	5df2d8a71c22623bc794eca9a4c8575f
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
-Requires:	awk
 Requires:	bash
 Requires:	dml
 Requires:	pciutils
@@ -53,7 +52,7 @@ do
 done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT DEVICE USER pldconf_functions win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_pld}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions user.pl {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,ustawienia}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 
 IPREFIX="/usr"
 EXEC_PREFIX="${IPREFIX}/bin"
@@ -63,10 +62,11 @@ CONF_FILE="${CONF_DIR}/ustawienia"
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia << EOF
 export PLDCONF_PAGER=less
-export FIX_ERRORS=1
+export ERRORS_HANDLE=ALWAYS_ASK
 export VERBOSE_MODE=0
 export TIMEOUT_MODE=0
 export SLEEP_TIME=2
+export X_MOUSE_PROTOCOL=auto
 EOF
 
 %clean
@@ -85,19 +85,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/BOOT/*.sh
 %attr(755,root,root) %{_pcdatadir}/BOOT/*.pl
 %{_pcdatadir}/BOOT/*.c
-%{_pcdatadir}/BOOT/*.txt
 
 %dir %{_pcdatadir}/NET
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
-%attr(755,root,root) %{_pcdatadir}/NET/*.pl
 %dir %{_pcdatadir}/NET/NET_FILES/
 %{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/cost
 
-%dir %{_pcdatadir}/DEVICE
-%attr(755,root,root) %{_pcdatadir}/DEVICE/*.sh
-%dir %{_pcdatadir}/DEVICE/ALSA/
-%attr(755,root,root) %{_pcdatadir}/DEVICE/ALSA/*.sh
+%dir %{_pcdatadir}/DEVICES
+%attr(755,root,root) %{_pcdatadir}/DEVICES/*.sh
+%dir %{_pcdatadir}/DEVICES/ALSA/
+%attr(755,root,root) %{_pcdatadir}/DEVICES/ALSA/*.sh
+%dir %{_pcdatadir}/DEVICES/TV/
+%attr(755,root,root) %{_pcdatadir}/DEVICES/TV/*.sh
+%{_pcdatadir}/DEVICES/TV/CARDLIST.bttv
+%{_pcdatadir}/DEVICES/TV/CARDLIST.saa7134
+%{_pcdatadir}/DEVICES/TV/CARDLIST.tuner
 
 %dir %{_pcdatadir}/POMOC
 %{_pcdatadir}/POMOC/README*
@@ -110,7 +113,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/X
 %attr(755,root,root) %{_pcdatadir}/X/*.sh
-%attr(755,root,root) %{_pcdatadir}/X/*.pl
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP
 %{_pcdatadir}/X/KILLER_DESKTOP/DirIcon
