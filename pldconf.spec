@@ -1,12 +1,12 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.8
+Version:	0.3.9
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	ed69ac292d62685015fe6ce8bc4d4ffd
+# Source0-md5:	d51fe61d8c92f6d67579e185218ea8f5
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -63,10 +63,10 @@ CONF_FILE="${CONF_DIR}/ustawienia"
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia << EOF
 export PLDCONF_PAGER=less
-export PLDCONF_ON_ERROR=FIX_ERRORS
-export PLDCONF_VERBOSE=yes
-export PLDCONF_MESSAGES_MODE=enter
-export PLDCONF_SLEEP_TIME=2
+export FIX_ERRORS=1
+export VERBOSE_MODE=1
+export TIMEOUT_MODE=0
+export SLEEP_TIME=2
 EOF
 
 %clean
