@@ -108,5 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/X/KILLER_DESKTOP/Defaults/*
 
 %dir %{_sysconfdir}/%{name}
-%{_sysconfdir}/%{name}/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/*
+
+# this file shouldn't be there!
 %{_sysconfdir}/dml.conf
