@@ -11,10 +11,7 @@ URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
 Requires:	dml
-Requires:	pciutils
 Requires:	%{_bindir}/perl
-Requires:	psutils
-Requires:	sh-utils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pcdatadir	%{_datadir}/%{name}
