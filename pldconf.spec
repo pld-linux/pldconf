@@ -90,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/X/KILLER_DESKTOP
 %{_pcdatadir}/X/KILLER_DESKTOP/DirIcon
 %{_pcdatadir}/X/KILLER_DESKTOP/hacker_bg.png
+%{_pcdatadir}/X/KILLER_DESKTOP/ooo_red.png
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices
 %{_pcdatadir}/X/KILLER_DESKTOP/Choices/README
