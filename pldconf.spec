@@ -32,20 +32,19 @@ graficznego, sieci i menad¿era startu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/%{name},%{_pcdatadir}}
 
 find . | while read file
 do
     if [ -f $file ]
     then
-	cat $file | sed 's@/usr/local/share@%{_datadir}@' > tmp ; mv tmp $file
-	cat $file | sed 's@/etc@%{_sysconfdir}@' > tmp ; mv tmp $file
-	cat $file | sed 's@/usr/sbin@%{_sbindir}@' > tmp ; mv tmp $file
+	cat $file | \
+		sed 's@/usr/local/share@%{_datadir}@' | \
+		sed 's@/etc@%{_sysconfdir}@' | \
+		sed 's@/usr/sbin@%{_sbindir}@' > tmp ; mv tmp $file
     fi
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_pcdatadir}
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 install pldconf $RPM_BUILD_ROOT%{_sbindir}
 cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh $RPM_BUILD_ROOT%{_pcdatadir}
 install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
@@ -68,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/BOOT/*.c
 %{_pcdatadir}/BOOT/*.txt
 %dir %{_pcdatadir}/BOOT/MBRS
- %{_pcdatadir}/BOOT/MBRS/*.dd
+%{_pcdatadir}/BOOT/MBRS/*.dd
 
 %dir %{_pcdatadir}/NET
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
