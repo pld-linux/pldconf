@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.3.4
+Version:	0.3.5
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	9aa82069cffa4b4a4bcbd830619628d6
+# Source0-md5:	1396197f329eddc8773253e6423e41cf
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -49,12 +49,26 @@ do
     fi
 done
 
-install pldconf ispconnect $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT DEVICE win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_pld}.sh $RPM_BUILD_ROOT%{_pcdatadir}
-# ???? It CAN'T be done!!
-#install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
-echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
-echo "PLDCONF_EDITOR=vim" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+install pldconf $RPM_BUILD_ROOT%{_bindir}
+cp -r POMOC NET SYSINFO X BOOT DEVICE USER pldconf_functions win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_pld}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+
+IPREFIX="/usr"
+EXEC_PREFIX="${IPREFIX}/bin"
+DATA_DIR="${IPREFIX}/share/pldconf"
+CONF_DIR="/etc/pldconf"
+CONF_FILE="${CONF_DIR}/ustawienia"
+
+echo PLDCONF_VERSION=%{version} > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo PLDCONF_EDITOR=vim >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo PLDCONF_PAGER=less >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo PLDCONF_SHOW_SOURCE_BUTTON=yes >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo PLDCONF_LOG=no >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo PLDCONF_ON_ERROR=FIX_ERRORS >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo IPREFIX="${IPREFIX}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo EXEC_PREFIX="${EXEC_PREFIX}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo DATA_DIR="${DATA_DIR}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo CONF_DIR="${CONF_DIR}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo CONF_FILE="${CONF_FILE}" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -64,6 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 
 %dir %{_pcdatadir}
+%{_pcdatadir}/pldconf_functions
 %attr(755,root,root) %{_pcdatadir}/*.sh
 %attr(755,root,root) %{_pcdatadir}/*.pl
 
@@ -81,6 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/NET/NET_FILES/
 %{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/lista_kart
+%{_pcdatadir}/NET/NET_FILES/cost
 
 %dir %{_pcdatadir}/DEVICE
 %attr(755,root,root) %{_pcdatadir}/DEVICE/*.sh
@@ -89,6 +105,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/POMOC
 %{_pcdatadir}/POMOC/README*
+
+%dir %{_pcdatadir}/USER
+%attr(755,root,root) %{_pcdatadir}/USER/fetchmail.sh
 
 %dir %{_pcdatadir}/SYSINFO
 %attr(755,root,root) %{_pcdatadir}/SYSINFO/*.sh
@@ -122,8 +141,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings
 %{_pcdatadir}/X/KILLER_DESKTOP/xfce4/xfce4rc
+%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/keythemerc
 %{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings/*
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
-#%{_sysconfdir}/dml.conf
