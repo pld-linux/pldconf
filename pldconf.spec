@@ -44,12 +44,11 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir},%{_de
 
 find . | while read file
 do
-    if [ -f $file ]
-    then
-	cat $file | \
-		sed 's@/etc@%{_sysconfdir}@' | \
-		sed 's@/usr/bin@%{_bindir}@' > tmp ; mv tmp $file
-    fi
+	if [ -f $file ]; then
+		cat $file | \
+			sed 's@/etc@%{_sysconfdir}@' | \
+			sed 's@/usr/bin@%{_bindir}@' > tmp ; mv tmp $file
+	fi
 done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
