@@ -1,16 +1,19 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.3.1
+Version:	0.3.2
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	e8bb0023cc5a0400537360cf8114ae22
+# Source0-md5:	aab3d3c37fc87f8c21001e8ab2249e29
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
 Requires:	dml
+Requires:	sed
+Requires:	awk
+Requires:	pciutils
 Requires:	%{_bindir}/perl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,8 +47,8 @@ do
     fi
 done
 
-install pldconf $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh menu_user.sh install_dc.sh $RPM_BUILD_ROOT%{_pcdatadir}
+install pldconf ispconnect $RPM_BUILD_ROOT%{_bindir}
+cp -r POMOC NET SYSINFO X BOOT DEVICE autorzy.sh inne.sh poldek.sh win.pl ustawienia.sh menu_user.sh install_dc.sh $RPM_BUILD_ROOT%{_pcdatadir}
 install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 echo "PLDCONF_EDITOR=vim" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
@@ -74,13 +77,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/NET/*.pl
 %dir %{_pcdatadir}/NET/NET_FILES/
 %attr(755,root,root) %{_pcdatadir}/NET/NET_FILES/*.sh
-%{_pcdatadir}/NET/NET_FILES/chat
-%{_pcdatadir}/NET/NET_FILES/gui.part1
-%{_pcdatadir}/NET/NET_FILES/gui.part2
-%{_pcdatadir}/NET/NET_FILES/konfig
+%{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/lista_kart
-%{_pcdatadir}/NET/NET_FILES/ppp-off
-%{_pcdatadir}/NET/NET_FILES/ppp-on
+
+%dir %{_pcdatadir}/DEVICE
+%attr(755,root,root) %{_pcdatadir}/DEVICE/*.sh
+%dir %{_pcdatadir}/DEVICE/ALSA/
+%attr(755,root,root) %{_pcdatadir}/DEVICE/ALSA/*.sh
 
 %dir %{_pcdatadir}/POMOC
 %{_pcdatadir}/POMOC/README*
