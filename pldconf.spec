@@ -47,7 +47,7 @@ done
 mkdir -p $RPM_BUILD_ROOT%{_pcdatadir}
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 install pldconf $RPM_BUILD_ROOT%{_sbindir}
-cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl ustawienia.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh $RPM_BUILD_ROOT%{_pcdatadir}
 install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_EDITOR=vim" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
