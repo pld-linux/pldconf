@@ -13,7 +13,7 @@ Requires:	dml
 Requires:	%{_bindir}/perl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-%define		_pcdatadir	%{_datadir}-%{name}
+%define		_pcdatadir	%{_datadir}/%{name}
 
 %description
 It's friendly tool for first-time users, it ask only few questions and
