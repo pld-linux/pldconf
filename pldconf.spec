@@ -1,5 +1,5 @@
 Summary:	PLD Linux configuration tool
-Summary(pl):	Narzêdzie do konfiguracji PLD Linuksa 
+Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.7
 Release:	1
@@ -21,17 +21,19 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pcdatadir	%{_datadir}/%{name}
 
 %description
-This is a friendly tool for first-time users. It asks only a few questions and
-makes use of a graphical user interface on a text terminal. It makes possible
-for users to configure their graphic environment, the network and startup
-manager and some other elements of the system. There's only Polish interface 
-available in current version.
+This is a friendly tool for first-time users. It asks only a few
+questions and makes use of a graphical user interface on a text
+terminal. It makes possible for users to configure their graphic
+environment, the network and startup manager and some other elements
+of the system. There's only Polish interface available in current
+version.
 
 %description -l pl
-Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o pytañ i
-korzysta z graficznego interfejsu u¿ytkownika na terminalu tekstowym. Pldconf
-pozwala miêdzy innymi na konfiguracjê ¶rodowiska graficznego, sieci, menad¿era
-startu. W chwili obecnej dostêpny jest tylko interfejs w jêzyku polskim.
+Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
+pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
+tekstowym. pldconf pozwala miêdzy innymi na konfiguracjê ¶rodowiska
+graficznego, sieci, menad¿era startu. W chwili obecnej dostêpny jest
+tylko interfejs w jêzyku polskim.
 
 %prep
 %setup -q -n %{name}_%{version}
