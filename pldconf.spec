@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.3.5
+Version:	0.3.6
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	1396197f329eddc8773253e6423e41cf
+# Source0-md5:	15450e12dca5076b83f2686d2999d2a0
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
