@@ -1,16 +1,17 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.2.4
-Release:	2
+Version:	0.2.5
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	96aa3bf0a4d5d658e705b997ed6d81d6
+# Source0-md5:	cabfd4ed3ff5a6b002bbdff9898457e7
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
 Requires:	dml
+Requires:	perl-modules
 Requires:	%{_bindir}/perl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,30 +33,30 @@ graficznego, sieci i menad¿era startu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/%{name},%{_pcdatadir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir}}
 
 find . | while read file
 do
     if [ -f $file ]
     then
 	cat $file | \
-		sed 's@/usr/local/share@%{_datadir}@' | \
 		sed 's@/etc@%{_sysconfdir}@' | \
-		sed 's@/usr/sbin@%{_sbindir}@' > tmp ; mv tmp $file
+		sed 's@/usr/bin@%{_bindir}@' > tmp ; mv tmp $file
     fi
 done
 
-install pldconf $RPM_BUILD_ROOT%{_sbindir}
-cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh $RPM_BUILD_ROOT%{_pcdatadir}
+install pldconf $RPM_BUILD_ROOT%{_bindir}
+cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh menu_user.sh $RPM_BUILD_ROOT%{_pcdatadir}
 install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
-echo "PLDCONF_EDITOR=vim" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+echo "PLDCONF_EDITOR=vim" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_bindir}/*
 
 %dir %{_pcdatadir}
 %attr(755,root,root) %{_pcdatadir}/*.sh
@@ -74,7 +75,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pcdatadir}/NET/*.pl
 %dir %{_pcdatadir}/NET/NET_FILES/
 %attr(755,root,root) %{_pcdatadir}/NET/NET_FILES/*.sh
+%{_pcdatadir}/NET/NET_FILES/chat
+%{_pcdatadir}/NET/NET_FILES/gui.part1
+%{_pcdatadir}/NET/NET_FILES/gui.part2
+%{_pcdatadir}/NET/NET_FILES/konfig
 %{_pcdatadir}/NET/NET_FILES/lista_kart
+%{_pcdatadir}/NET/NET_FILES/ppp-off
+%{_pcdatadir}/NET/NET_FILES/ppp-on
 
 %dir %{_pcdatadir}/POMOC
 %{_pcdatadir}/POMOC/README*
@@ -108,7 +115,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/X/KILLER_DESKTOP/Defaults/*
 
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/*
-
-# this file shouldn't be there!
+%{_sysconfdir}/%{name}/*
 %{_sysconfdir}/dml.conf
