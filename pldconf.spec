@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.2.1
+Version:	0.2.3
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	67aabc22885833aac84f906ee6effea0
+# Source0-md5:	4f36f370ab497cfe88947a27341ffcfa
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
@@ -17,15 +17,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pcdatadir	%{_datadir}/%{name}
 
 %description
-It's friendly tool for first-time users, it ask only few questions and
-uses graphical user interface at text terminal. It lets configure
-graphics environment, network and startup manager.
+It's a friendly tool for first-time users, it asks only a few
+questions and uses an graphical user interface on an text terminal. It
+lets you configure your graphic environment, network and startup manager.
 
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
 pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
-tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska graficznego,
-sieci i menad¿era startu.
+tekstowym. Pozwala miêdzy innymi na konfiguracjê ¶rodowiska 
+graficznego, sieci i menad¿era startu.
 
 %prep
 %setup -q -n %{name}_%{version}
@@ -38,9 +38,9 @@ find . | while read file
 do
     if [ -f $file ]
     then
-        cat $file | sed 's@/usr/local/share@%{_datadir}@' > tmp ; mv tmp $file
+	cat $file | sed 's@/usr/local/share@%{_datadir}@' > tmp ; mv tmp $file
 	cat $file | sed 's@/etc@%{_sysconfdir}@' > tmp ; mv tmp $file
-        cat $file | sed 's@/usr/sbin@%{_sbindir}@' > tmp ; mv tmp $file
+	cat $file | sed 's@/usr/sbin@%{_sbindir}@' > tmp ; mv tmp $file
     fi
 done
 
@@ -56,7 +56,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
 %attr(755,root,root) %{_sbindir}/*
 
 %dir %{_pcdatadir}
@@ -77,7 +76,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/NET/NET_FILES/
 %attr(755,root,root) %{_pcdatadir}/NET/NET_FILES/*.sh
 %{_pcdatadir}/NET/NET_FILES/lista_kart
-%{_pcdatadir}/NET/NET_FILES/plik
 
 %dir %{_pcdatadir}/POMOC
 %{_pcdatadir}/POMOC/README*
