@@ -1,5 +1,5 @@
-Summary:	PLD configuration tool
-Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
+Summary:	PLD Linux Distribution configuration tool
+Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
 Version:	0.1.2
 Release:	1
@@ -17,7 +17,8 @@ BuildArch:      noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-PLD configuration tool.
+It's friendly tool for first-time users, it ask only few questions and
+uses graphical user interface.
 
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
