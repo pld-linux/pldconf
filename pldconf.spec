@@ -1,11 +1,11 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.12
-Release:	1
+Version:	0.3.13
+Release:	3
 License:	GPL
 Group:		Applications/System
-Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
+Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
 # Source0-md5:	5cd8b8f30cd10f59bc2fae7169814902
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
@@ -15,6 +15,7 @@ Requires:	pciutils
 Requires:	sed
 Requires:	which
 Requires:	%{_bindir}/perl
+Requires:	gettext
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -25,22 +26,21 @@ This is a friendly tool for first-time users. It asks only a few
 questions and makes use of a graphical user interface on a text
 terminal. It makes possible for users to configure their graphic
 environment, the network and startup manager and some other elements
-of the system. There's only Polish interface available in the current
-version.
+of the system.
 
 %description -l pl
 Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
 pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
 tekstowym. pldconf pozwala miêdzy innymi na konfiguracjê ¶rodowiska
-graficznego, sieci, menad¿era startu. W chwili obecnej dostêpny jest
-tylko interfejs w jêzyku polskim.
+graficznego, sieci, menad¿era startu.
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup -q -n %{name}-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir},%{_desktopdir},%{_pixmapsdir},%{_datadir}/locale/,%{_datadir}/doc/%{name}-%{version}}
+
 
 find . | while read file
 do
@@ -54,6 +54,9 @@ done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
 cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,user,ustawienia}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+
+cp -r locale/* $RPM_BUILD_ROOT%{_datadir}/locale
+cp -r DOCS/* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
 
 IPREFIX="/usr"
 EXEC_PREFIX="${IPREFIX}/bin"
@@ -70,10 +73,15 @@ export SLEEP_TIME=2
 export X_MOUSE_PROTOCOL=auto
 EOF
 
+install X/gfx/pldconf.desktop $RPM_BUILD_ROOT%{_desktopdir}
+install X/gfx/pldconf.png $RPM_BUILD_ROOT%{_pixmapsdir}
+
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 
@@ -83,7 +91,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/BOOT
 %attr(755,root,root) %{_pcdatadir}/BOOT/*.sh
-%attr(755,root,root) %{_pcdatadir}/BOOT/*.pl
 %{_pcdatadir}/BOOT/*.c
 
 %dir %{_pcdatadir}/NET
@@ -114,33 +121,17 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/X
 %attr(755,root,root) %{_pcdatadir}/X/*.sh
 
-%dir %{_pcdatadir}/X/KILLER_DESKTOP
-%{_pcdatadir}/X/KILLER_DESKTOP/DirIcon
-%{_pcdatadir}/X/KILLER_DESKTOP/hacker_bg.png
-%{_pcdatadir}/X/KILLER_DESKTOP/ooo_red.png
-%{_pcdatadir}/X/KILLER_DESKTOP/qcad_blue.png
-%{_pcdatadir}/X/KILLER_DESKTOP/pldconf_red.png
+%dir %{_pcdatadir}/X/gfx
+%attr(644,root,root) %{_pcdatadir}/X/gfx/*
+%{_pcdatadir}/X/gfx/README
 
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices
-%{_pcdatadir}/X/KILLER_DESKTOP/Choices/README
-
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-icons
-%{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-icons/*
-
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-types
-%attr(755,root,root) %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-types/*
-
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices/ROX-Filer/
-%{_pcdatadir}/X/KILLER_DESKTOP/Choices/ROX-Filer/*
-
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/Defaults
-%{_pcdatadir}/X/KILLER_DESKTOP/Defaults/*
-
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4
-%dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings
-%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/xfce4rc
-%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/keythemerc
-%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings/*
+%dir %{_pcdatadir}/X/archive
+%attr(644,root,root) %{_pcdatadir}/X/archive/*
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
+
+%doc DOCS/README.hacking DOCS/README.i18n DOCS/TODO
+
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
