@@ -2,7 +2,7 @@ Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
 Version:	0.2.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
@@ -45,9 +45,10 @@ done
 
 mkdir -p $RPM_BUILD_ROOT%{_pcdatadir}
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-cp pldconf $RPM_BUILD_ROOT%{_sbindir}
+install pldconf $RPM_BUILD_ROOT%{_sbindir}
 cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl ustawienia.sh $RPM_BUILD_ROOT%{_pcdatadir}
-echo PLDCONF_EDITOR=vim > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
+install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
+echo "PLDCONF_EDITOR=vim" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,3 +109,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
+%{_sysconfdir}/dml.conf
