@@ -13,6 +13,7 @@ Requires:	bash
 Requires:	dml
 Requires:	pciutils
 Requires:	sed
+Requires:	which
 Requires:	%{_bindir}/perl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
