@@ -1,12 +1,12 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.7
-Release:	2
+Version:	0.3.8
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	099a654c1c8f1b17432bf8c9d58ffefa
+# Source0-md5:	ed69ac292d62685015fe6ce8bc4d4ffd
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -25,7 +25,7 @@ This is a friendly tool for first-time users. It asks only a few
 questions and makes use of a graphical user interface on a text
 terminal. It makes possible for users to configure their graphic
 environment, the network and startup manager and some other elements
-of the system. There's only Polish interface available in current
+of the system. There's only Polish interface available in the current
 version.
 
 %description -l pl
