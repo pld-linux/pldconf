@@ -17,7 +17,6 @@ Requires:	sed
 Requires:	which
 Requires:	%{_bindir}/perl
 Requires:	less
-Requires:	vim
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
