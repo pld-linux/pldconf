@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-icons/*
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-types
-%{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-types/*
+%attr(755,root,root) %{_pcdatadir}/X/KILLER_DESKTOP/Choices/MIME-types/*
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices/ROX-Filer/
 %{_pcdatadir}/X/KILLER_DESKTOP/Choices/ROX-Filer/*
