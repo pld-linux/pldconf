@@ -1,12 +1,12 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.13
-Release:	3
+Version:	0.3.14
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
-# Source0-md5:	f1d218f3c49cf4c81f5be29700a1f3af
+# Source0-md5:	d7af447efb537782ce9d25b7af4a8a9b
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
@@ -82,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc DOCS/README.hacking DOCS/README.i18n DOCS/TODO
+%doc DOCS/README.hacking DOCS/README.i18n
 %attr(755,root,root) %{_bindir}/*
 
 %dir %{_pcdatadir}
@@ -123,7 +123,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/X/gfx
 %{_pcdatadir}/X/gfx/*
-%{_pcdatadir}/X/gfx/README
 
 %dir %{_pcdatadir}/X/archive
 %{_pcdatadir}/X/archive/*
