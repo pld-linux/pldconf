@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.2.5
+Version:	0.3.0
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	cabfd4ed3ff5a6b002bbdff9898457e7
+# Source0-md5:	1c73a2075b4279d0fbc1c429eedaee0a
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	bash
@@ -46,7 +46,7 @@ do
 done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh menu_user.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r POMOC NET SYSINFO X BOOT autorzy.sh inne.sh poldek.sh win.pl printer.sh ustawienia.sh menu_user.sh install_dc.sh $RPM_BUILD_ROOT%{_pcdatadir}
 install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
 echo "PLDCONF_EDITOR=vim" >> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
@@ -113,6 +113,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/Defaults
 %{_pcdatadir}/X/KILLER_DESKTOP/Defaults/*
+
+%dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4
+%dir %{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings
+%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/xfce4rc
+%{_pcdatadir}/X/KILLER_DESKTOP/xfce4/settings/*
 
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
