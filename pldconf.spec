@@ -7,12 +7,12 @@ License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/%{name}_%{version}.tgz
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/index.html
-Requires:	bash
-Requires:	dml
-Requires:	perl
 BuildRequires:	bash
 BuildRequires:	dml
 BuildRequires:	perl
+Requires:	bash
+Requires:	dml
+Requires:	perl
 BuildArch:      noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,8 +28,7 @@ pytañ i korzysta z graficznego interfejsu u¿ytkownika.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sbindir}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}}
 
 find . | while read file
 do
@@ -60,9 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %attr(755,root,root) %{_datadir}/%{name}/*.sh
 %attr(755,root,root) %{_datadir}/%{name}/*.pl
+%attr(755,root,root)%{_datadir}/%{name}/POMOC_DML
 %{_datadir}/%{name}/NET_FILES
 %{_datadir}/%{name}/ROX_WMAKER
-%attr(755,root,root)%{_datadir}/%{name}/POMOC_DML
 %dir %{_sysconfdir}/%{name}
 %{_sysconfdir}/%{name}/*
 %{_sysconfdir}/dml.conf
