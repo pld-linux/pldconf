@@ -9,11 +9,11 @@ Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/%{name}_%{version}.tgz
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/index.html
 BuildRequires:	bash
 BuildRequires:	dml
-BuildRequires:	perl
+BuildRequires:	%{_bindir}/perl
 Requires:	bash
 Requires:	dml
-Requires:	perl
-BuildArch:      noarch
+Requires:	%{_bindir}/perl
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
