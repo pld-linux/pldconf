@@ -1,12 +1,12 @@
 Summary:	PLD Linux Distribution configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Dystrybucji Linuksa PLD
 Name:		pldconf
-Version:	0.3.2
+Version:	0.3.3
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}_%{version}.tgz
-# Source0-md5:	aab3d3c37fc87f8c21001e8ab2249e29
+# Source0-md5:	6811c03541c2963c4ec1bde9d9cb16d4
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	sed
 Requires:	awk
@@ -49,7 +49,7 @@ do
 done
 
 install pldconf ispconnect $RPM_BUILD_ROOT%{_bindir}
-cp -r POMOC NET SYSINFO X BOOT DEVICE win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_dc}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r POMOC NET SYSINFO X BOOT DEVICE win.pl {autorzy,inne,poldek,ustawienia,menu_user,install_pld}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 # ???? It CAN'T be done!!
 #install dml.conf $RPM_BUILD_ROOT%{_sysconfdir}
 echo "PLDCONF_VERSION=%{version}" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia
@@ -101,6 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pcdatadir}/X/KILLER_DESKTOP/DirIcon
 %{_pcdatadir}/X/KILLER_DESKTOP/hacker_bg.png
 %{_pcdatadir}/X/KILLER_DESKTOP/ooo_red.png
+%{_pcdatadir}/X/KILLER_DESKTOP/qcad_blue.png
 %{_pcdatadir}/X/KILLER_DESKTOP/pldconf_red.png
 
 %dir %{_pcdatadir}/X/KILLER_DESKTOP/Choices
