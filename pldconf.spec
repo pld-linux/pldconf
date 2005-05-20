@@ -8,7 +8,6 @@ Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
 # Source0-md5:	850d6f3ea0832a07add06c07f1b30a59
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
-BuildRequires:	sed
 Requires:	bash
 Requires:	dml
 Requires:	gettext
@@ -96,15 +95,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_pcdatadir}/NET
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
-%dir %{_pcdatadir}/NET/NET_FILES/
+%dir %{_pcdatadir}/NET/NET_FILES
 %{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/cost
 
 %dir %{_pcdatadir}/DEVICES
 %attr(755,root,root) %{_pcdatadir}/DEVICES/*.sh
-%dir %{_pcdatadir}/DEVICES/ALSA/
+%dir %{_pcdatadir}/DEVICES/ALSA
 %attr(755,root,root) %{_pcdatadir}/DEVICES/ALSA/*.sh
-%dir %{_pcdatadir}/DEVICES/TV/
+%dir %{_pcdatadir}/DEVICES/TV
 %attr(755,root,root) %{_pcdatadir}/DEVICES/TV/*.sh
 %{_pcdatadir}/DEVICES/TV/CARDLIST.bttv
 %{_pcdatadir}/DEVICES/TV/CARDLIST.saa7134
