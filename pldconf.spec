@@ -1,17 +1,18 @@
 Summary:	PLD Linux configuration tool
 Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
 Name:		pldconf
-Version:	0.3.15
-Release:	3
+Version:	0.3.16
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
-# Source0-md5:	850d6f3ea0832a07add06c07f1b30a59
+# Source0-md5:	f7a6a77db0642a83b5fc22b7a55e04d1
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 Requires:	bash
 Requires:	dml
 Requires:	gettext
 Requires:	pciutils
+Requires:	pci-database
 Requires:	sed
 Requires:	which
 Requires:	%{_bindir}/perl
@@ -52,7 +53,7 @@ do
 done
 
 install pldconf $RPM_BUILD_ROOT%{_bindir}
-cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,user,ustawienia}.sh $RPM_BUILD_ROOT%{_pcdatadir}
+cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,user}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 
 cp -r locale/* $RPM_BUILD_ROOT%{_datadir}/locale
 cp -r DOCS/* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
@@ -96,7 +97,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pcdatadir}/NET
 %attr(755,root,root) %{_pcdatadir}/NET/*.sh
 %dir %{_pcdatadir}/NET/NET_FILES
-%{_pcdatadir}/NET/NET_FILES/ppplicznik.conf
 %{_pcdatadir}/NET/NET_FILES/cost
 
 %dir %{_pcdatadir}/DEVICES
