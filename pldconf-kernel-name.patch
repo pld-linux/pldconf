@@ -1,0 +1,48 @@
+diff -ur pldconf-0.3.16/DEVICES/ALSA/alsa_init.sh pldconf-0.3.16.new/DEVICES/ALSA/alsa_init.sh
+--- pldconf-0.3.16/DEVICES/ALSA/alsa_init.sh	2005-01-22 16:01:09.000000000 +0000
++++ pldconf-0.3.16.new/DEVICES/ALSA/alsa_init.sh	2006-05-09 14:41:16.405899750 +0000
+@@ -26,7 +26,7 @@
+ EOF
+ }
+ 
+-install_if_missing "kernel-sound-alsa alsa-utils-init aumix"
++install_if_missing "kernel-grsecurity-sound-alsa alsa-utils-init aumix"
+ module="`pcidev /m snd | head -n 1`"
+ [ -n "$module" ] && generate_config
+ 
+diff -ur pldconf-0.3.16/NET/ethernet.sh pldconf-0.3.16.new/NET/ethernet.sh
+--- pldconf-0.3.16/NET/ethernet.sh	2005-01-22 16:01:09.000000000 +0000
++++ pldconf-0.3.16.new/NET/ethernet.sh	2006-05-09 14:40:33.963247250 +0000
+@@ -43,7 +43,7 @@
+ run_main()
+ {
+ 	if [ "X$PCMCIA" = "Xyes" ]; then
+-		install_if_missing "pcmcia-cs kernel-pcmcia-cs"
++		install_if_missing "pcmcia-cs kernel-grsecurity-pcmcia-cs"
+ 		/etc/rc.d/init.d/pcmcia restart 
+ 		#This line prevents "MODULE = nie_wykryto" test for just eth0
+ 		MODULE_0=yenta_socket
+diff -ur pldconf-0.3.16/install_pld.sh pldconf-0.3.16.new/install_pld.sh
+--- pldconf-0.3.16/install_pld.sh	2005-02-26 20:32:35.000000000 +0000
++++ pldconf-0.3.16.new/install_pld.sh	2006-05-09 14:38:31.127570500 +0000
+@@ -154,7 +154,7 @@
+ mv /etc/modprobe.conf.temp /etc/modprobe.conf || cp /etc/modules.conf /etc/modprobe.conf
+ mv /etc/modules.temp /etc/modules
+ mount /proc
+-poldek -iv kernel grub pldconf less localedb-src kbd wget lynx mtr
++poldek -iv kernel-grsecurity grub pldconf less localedb-src kbd wget lynx mtr
+ localedb-gen -l pl_PL
+ echo root:root | chpasswd
+ echo "Konfiguracja mened¿era startu GRUB (pldconf -b -a)"
+diff -ur pldconf-0.3.16/poldek.sh pldconf-0.3.16.new/poldek.sh
+--- pldconf-0.3.16/poldek.sh	2005-06-15 08:37:57.000000000 +0000
++++ pldconf-0.3.16.new/poldek.sh	2006-05-09 14:38:57.569223000 +0000
+@@ -27,7 +27,7 @@
+ 
+ 	[ "X$info" = "Xyes" ] && packets="$packets pciutils less nmap"
+ 
+-	[ "X$devel" = "Xyes" ] && packets="$packets kernel-headers autoconf automake gcc glibc-devel libstdc++-devel glibc-static"
++	[ "X$devel" = "Xyes" ] && packets="$packets kernel-grsecurity-headers autoconf automake gcc glibc-devel libstdc++-devel glibc-static"
+ 
+ 	[ "X$poldek_fetch" = "Xyes" ] && poldek --shcmd="get $poldek_file_fetch"
+ 
