@@ -1,5 +1,5 @@
 Summary:	PLD Linux configuration tool
-Summary(pl):	Narzêdzie do konfiguracji Linuksa PLD
+Summary(pl.UTF-8):   NarzÄ™dzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.16
 Release:	2
@@ -30,11 +30,11 @@ terminal. It makes possible for users to configure their graphic
 environment, the network and startup manager and some other elements
 of the system.
 
-%description -l pl
-Narzêdzie jest przyjazne dla pocz±tkuj±cych u¿ytkowników, zadaje ma³o
-pytañ i korzysta z graficznego interfejsu u¿ytkownika na terminalu
-tekstowym. pldconf pozwala miêdzy innymi na konfiguracjê ¶rodowiska
-graficznego, sieci, menad¿era startu.
+%description -l pl.UTF-8
+NarzÄ™dzie jest przyjazne dla poczÄ…tkujÄ…cych uÅ¼ytkownikÃ³w, zadaje maÅ‚o
+pytaÅ„ i korzysta z graficznego interfejsu uÅ¼ytkownika na terminalu
+tekstowym. pldconf pozwala miÄ™dzy innymi na konfiguracjÄ™ Å›rodowiska
+graficznego, sieci, menadÅ¼era startu.
 
 %prep
 %setup -q
