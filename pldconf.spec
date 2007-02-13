@@ -1,5 +1,5 @@
 Summary:	PLD Linux configuration tool
-Summary(pl.UTF-8):   Narzędzie do konfiguracji Linuksa PLD
+Summary(pl.UTF-8):	Narzędzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.16
 Release:	2
