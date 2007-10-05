@@ -2,12 +2,14 @@ Summary:	PLD Linux configuration tool
 Summary(pl.UTF-8):	Narzędzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.16
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
 # Source0-md5:	f7a6a77db0642a83b5fc22b7a55e04d1
+Patch0:		%{name}-help_utf8.patch
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
+BuildRequires:	iconv
 Requires:	bash
 Requires:	dml
 Requires:	gettext
@@ -37,6 +39,14 @@ graficznego, sieci, menadżera startu.
 
 %prep
 %setup -q
+%patch0 -p1
+
+%build
+# added UTF-8 versions of help
+for i in POMOC/README*txt
+do
+	iconv -f ISO-8859-2 -t UTF-8 $i > $i.pl_PL.UTF-8
+done
 
 %install
 rm -rf $RPM_BUILD_ROOT
