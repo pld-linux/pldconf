@@ -89,7 +89,7 @@ install X/gfx/pldconf.png $RPM_BUILD_ROOT%{_pixmapsdir}
 %find_lang %{name}
 
 # clean docdir
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
