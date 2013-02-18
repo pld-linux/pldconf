@@ -10,15 +10,16 @@ Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.
 Patch0:		%{name}-help_utf8.patch
 URL:		http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/
 BuildRequires:	iconv
+BuildRequires:	sed >= 4.0
+Requires:	%{_bindir}/perl
 Requires:	bash
 Requires:	dml
 Requires:	gettext
-Requires:	pciutils
+Requires:	less
 Requires:	pci-database
+Requires:	pciutils
 Requires:	sed
 Requires:	which
-Requires:	%{_bindir}/perl
-Requires:	less
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,28 +51,27 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir},%{_desktopdir},%{_pixmapsdir},%{_datadir}/locale/,%{_datadir}/doc/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_pcdatadir},%{_desktopdir},%{_pixmapsdir},%{_localedir}/,%{_docdir}/%{name}-%{version}}
 
-
-find . | while read file
-do
+find . | while read file; do
 	if [ -f $file ]; then
-		cat $file | \
-			sed 's@/etc@%{_sysconfdir}@' | \
-			sed 's@/usr/bin@%{_bindir}@' > tmp ; mv tmp $file
+		%{__sed} -i -e '
+			s@/etc@%{_sysconfdir}@;
+			s@/usr/bin@%{_bindir}@;
+		' $file
 	fi
 done
 
-install pldconf $RPM_BUILD_ROOT%{_bindir}
+install -p pldconf $RPM_BUILD_ROOT%{_bindir}
 cp -r BOOT DEVICES NET POMOC SYSINFO USER X pldconf_functions {autorzy,filesystems,inne,install_pld,menu_user,poldek_conf,poldek,template,user}.sh $RPM_BUILD_ROOT%{_pcdatadir}
 
-cp -r locale/* $RPM_BUILD_ROOT%{_datadir}/locale
-cp -r DOCS/* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
+cp -pr locale/* $RPM_BUILD_ROOT%{_localedir}
+cp -pr DOCS/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/
 
-IPREFIX="/usr"
+IPREFIX="%{_prefix}"
 EXEC_PREFIX="${IPREFIX}/bin"
 DATA_DIR="${IPREFIX}/share/pldconf"
-CONF_DIR="/etc/pldconf"
+CONF_DIR="%{_sysconfdir}/pldconf"
 CONF_FILE="${CONF_DIR}/ustawienia"
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/ustawienia << EOF
@@ -83,13 +83,13 @@ export SLEEP_TIME=2
 export X_MOUSE_PROTOCOL=auto
 EOF
 
-install X/gfx/pldconf.desktop $RPM_BUILD_ROOT%{_desktopdir}
-install X/gfx/pldconf.png $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p X/gfx/pldconf.desktop $RPM_BUILD_ROOT%{_desktopdir}
+cp -p X/gfx/pldconf.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %find_lang %{name}
 
 # clean docdir
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
