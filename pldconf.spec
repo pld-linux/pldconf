@@ -2,7 +2,7 @@ Summary:	PLD Linux configuration tool
 Summary(pl.UTF-8):	Narzędzie do konfiguracji Linuksa PLD
 Name:		pldconf
 Version:	0.3.16
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.inf.sgsp.edu.pl/pub/PROGRAMY/PLD/RPM/%{name}-%{version}.tar.gz
